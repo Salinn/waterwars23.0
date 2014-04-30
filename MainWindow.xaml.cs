@@ -222,18 +222,20 @@ namespace waterwars23._0
         }
 
         private void check_answer(){
-            if (guess == true && (WeatherCode == "11" || WeatherCode == "12")){
+            if ((guess && (WeatherCode == "11" || WeatherCode == "12")) || (!guess && WeatherCode != "11" && WeatherCode != "12"))
+            {
                 Console.WriteLine("---------------");
                 Console.WriteLine(WeatherCode);
-                Console.WriteLine("RIGHT!->guessed yes");
-                var uri = new Uri("http://1.bp.blogspot.com/-bzFqJmqgkTM/UChvEkWwKuI/AAAAAAAAA1c/Dwa1kMxo-uI/s1600/yes_logo.png");
+                Console.WriteLine("RIGHT!");
+                var uri = new Uri("http://png-4.findicons.com/files/icons/1008/quiet/256/yes.png");
                 var bitmap = new BitmapImage(uri);
                 yes_no_pic_box.Source = bitmap;
+                return;
             }else{
                 Console.WriteLine("---------------");
                 Console.WriteLine(WeatherCode);
                 Console.WriteLine("WRONG!");
-                var uri = new Uri("http://dogsandbabies.files.wordpress.com/2011/05/no.jpg");
+                var uri = new Uri("http://png-4.findicons.com/files/icons/1008/quiet/256/no.png");
                 var bitmap = new BitmapImage(uri);
                 yes_no_pic_box.Source = bitmap;
             }
