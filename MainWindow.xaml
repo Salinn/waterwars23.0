@@ -5,8 +5,8 @@
     <Grid>
         <Image x:Name="yes_no_pic_box" HorizontalAlignment="Left" Height="281" Margin="1277,330,-23,0" VerticalAlignment="Top" Width="338"/>
         <Image x:Name="map_pic_box" HorizontalAlignment="Left" Height="852" Margin="10,10,0,0" VerticalAlignment="Top" Width="1297"/>
-        <Button x:Name="yes_button" Content="Yes" HorizontalAlignment="Left" Margin="190,617,0,0" VerticalAlignment="Top" Width="117" Click="yes_button_Click" Height="60"/>
-        <Button x:Name="no_button" Content="No" HorizontalAlignment="Left" Margin="370,617,0,0" VerticalAlignment="Top" Width="119" Click="no_button_Click" Height="60"/>
+        <Button x:Name="yes_button" Content="Yes" HorizontalAlignment="Left" Margin="190,617,0,0" VerticalAlignment="Top" Width="117" Click="yes_button_Click" Height="60" Visibility="Hidden"/>
+        <Button x:Name="no_button" Content="No" HorizontalAlignment="Left" Margin="370,617,0,0" VerticalAlignment="Top" Width="119" Click="no_button_Click" Height="60" Visibility="Hidden"/>
         <Button x:Name="left_button" Content="Left" HorizontalAlignment="Left" Margin="555,617,0,0" VerticalAlignment="Top" Width="154" Click="left_button_Click" Height="73" Visibility="Hidden"/>
         <Button x:Name="right_button" Content="Right" HorizontalAlignment="Left" Margin="762,617,0,0" VerticalAlignment="Top" Width="154" Click="right_button_Click" Height="73" Visibility="Hidden"/>
         <Label x:Name="temp_lbl" Content="Tempature" HorizontalAlignment="Left" Margin="1278,60,0,0" VerticalAlignment="Top" FontSize="20"/>
