@@ -11,3 +11,16 @@ E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Debug\waterwars23._0
 E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Debug\waterwars23.0.csproj.GenerateResource.Cache
 E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Debug\waterwars23.0.exe
 E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Debug\waterwars23.0.pdb
+C:\Users\Salinn\Documents\Visual Studio 2013\Projects\waterwars23.0\waterwars23.0\bin\Debug\waterwars23.0.exe.config
+C:\Users\Salinn\Documents\Visual Studio 2013\Projects\waterwars23.0\waterwars23.0\obj\Debug\waterwars23.0.exe
+C:\Users\Salinn\Documents\Visual Studio 2013\Projects\waterwars23.0\waterwars23.0\obj\Debug\waterwars23.0.pdb
+C:\Users\Salinn\Documents\Visual Studio 2013\Projects\waterwars23.0\waterwars23.0\bin\Debug\waterwars23.0.exe
+C:\Users\Salinn\Documents\Visual Studio 2013\Projects\waterwars23.0\waterwars23.0\bin\Debug\waterwars23.0.pdb
+C:\Users\Salinn\Documents\Visual Studio 2013\Projects\waterwars23.0\waterwars23.0\obj\Debug\waterwars23.0.csprojResolveAssemblyReference.cache
+C:\Users\Salinn\Documents\Visual Studio 2013\Projects\waterwars23.0\waterwars23.0\obj\Debug\MainWindow.baml
+C:\Users\Salinn\Documents\Visual Studio 2013\Projects\waterwars23.0\waterwars23.0\obj\Debug\MainWindow.g.cs
+C:\Users\Salinn\Documents\Visual Studio 2013\Projects\waterwars23.0\waterwars23.0\obj\Debug\App.g.cs
+C:\Users\Salinn\Documents\Visual Studio 2013\Projects\waterwars23.0\waterwars23.0\obj\Debug\waterwars23.0_MarkupCompile.cache
+C:\Users\Salinn\Documents\Visual Studio 2013\Projects\waterwars23.0\waterwars23.0\obj\Debug\waterwars23.0.g.resources
+C:\Users\Salinn\Documents\Visual Studio 2013\Projects\waterwars23.0\waterwars23.0\obj\Debug\waterwars23._0.Properties.Resources.resources
+C:\Users\Salinn\Documents\Visual Studio 2013\Projects\waterwars23.0\waterwars23.0\obj\Debug\waterwars23.0.csproj.GenerateResource.Cache

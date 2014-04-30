@@ -28,11 +28,15 @@ namespace waterwars23._0
     {
         private readonly GestureListener _leapListener;
         private readonly Controller _leapController;
-        string query;
-        String WeatherCode;
+
         int counter;
         int map_location;
+
         Boolean guess;
+
+        String WeatherCode;
+        String Condition;
+        String query;
 
         private Object thisLock = new Object();
 
@@ -176,43 +180,58 @@ namespace waterwars23._0
         private void SetUp()
         {
             counter = 1;
-            query = "";
             map_location = 1;
-            var uri = new Uri("http://image.weather.com/images/maps/forecast/precfcst_600x405.jpg");
+            query = "0";
+            Condition = "0";
+
+            var uri = new Uri("http://i.imwx.com/images/maps/current/curwx_600x405.jpg");
             var bitmap = new BitmapImage(uri);
             map_pic_box.Source = bitmap;
+            uri = new Uri("http://upload.wikimedia.org/wikipedia/en/4/44/Question_mark_(black_on_white).png");
+            bitmap = new BitmapImage(uri);
+            yes_no_pic_box.Source = bitmap;
+
+            temp_box.Text = "0";
+            cond_box.Text = "0";
+            humid_box.Text = "0";
+            wind_box.Text = "0";
+            city_box.Text = "0";
+            last_city_box.Text = "0";
+            pressure_box.Text = "0";
         }
 
-        private void yes_button_Click(object sender, RoutedEventArgs e)
-        {
+        private void yes_button_Click(object sender, RoutedEventArgs e){
             guess = true;
             run();
         }
 
-        private void no_button_Click(object sender, RoutedEventArgs e)
-        {
+        private void no_button_Click(object sender, RoutedEventArgs e){
             guess = false;
             run();
         }
 
         private void run()
         {
-            getCityInfo();
-            setWeather();
-            check_answer();
+            if (counter != 11)
+            {
+                getCityInfo();
+                setWeather();
+                check_answer();
+            }
+            else { SetUp(); }
         }
 
-        private void check_answer()
-        {
-            if (guess == true && (WeatherCode == "11" || WeatherCode == "12"))
-            {
-                Console.WriteLine("RIGHT!");
+        private void check_answer(){
+            if (guess == true && (WeatherCode == "11" || WeatherCode == "12")){
+                Console.WriteLine("---------------");
+                Console.WriteLine(WeatherCode);
+                Console.WriteLine("RIGHT!->guessed yes");
                 var uri = new Uri("http://1.bp.blogspot.com/-bzFqJmqgkTM/UChvEkWwKuI/AAAAAAAAA1c/Dwa1kMxo-uI/s1600/yes_logo.png");
                 var bitmap = new BitmapImage(uri);
                 yes_no_pic_box.Source = bitmap;
-            }
-            else
-            {
+            }else{
+                Console.WriteLine("---------------");
+                Console.WriteLine(WeatherCode);
                 Console.WriteLine("WRONG!");
                 var uri = new Uri("http://dogsandbabies.files.wordpress.com/2011/05/no.jpg");
                 var bitmap = new BitmapImage(uri);
@@ -220,8 +239,7 @@ namespace waterwars23._0
             }
         }
 
-        private void getCityInfo()
-        {
+        private void getCityInfo(){
             if (counter == 1){
                 query = String.Format("http://weather.yahooapis.com/forecastrss?w=2490383");
             }else if (counter == 2){
@@ -230,13 +248,24 @@ namespace waterwars23._0
                 query = String.Format("http://weather.yahooapis.com/forecastrss?w=2367105");
             }else if (counter == 4){
                 query = String.Format("http://weather.yahooapis.com/forecastrss?w=2357024");
-            }else{return;}
+            }else if (counter == 5){
+                query = String.Format("http://weather.yahooapis.com/forecastrss?w=2436704");
+            }else if (counter == 6){
+                query = String.Format("http://weather.yahooapis.com/forecastrss?w=2503863");
+            }else if (counter == 7){
+                query = String.Format("http://weather.yahooapis.com/forecastrss?w=2487610");
+            }else if (counter == 8){
+                query = String.Format("http://weather.yahooapis.com/forecastrss?w=12590014");
+            }else if (counter == 9){
+                query = String.Format("http://weather.yahooapis.com/forecastrss?w=2364681");
+            }else if (counter == 10){
+                query = String.Format("http://weather.yahooapis.com/forecastrss?w=12588041");
+            }
 
             counter += 1;
         }
 
-        private void setWeather()
-        {
+        private void setWeather(){
             XmlDocument wData = new XmlDocument();
             wData.Load(query);
 
@@ -247,17 +276,18 @@ namespace waterwars23._0
             XmlNodeList nodes = wData.SelectNodes("/rss/channel/item/yweather:forecast", manger);
 
             temp_box.Text = channel.SelectSingleNode("item").SelectSingleNode("yweather:condition", manger).Attributes["temp"].Value;
-            cond_box.Text = channel.SelectSingleNode("item").SelectSingleNode("yweather:condition", manger).Attributes["text"].Value;
             humid_box.Text = channel.SelectSingleNode("yweather:atmosphere", manger).Attributes["humidity"].Value;
             wind_box.Text = channel.SelectSingleNode("yweather:wind", manger).Attributes["speed"].Value;
+            last_city_box.Text = city_box.Text;
             city_box.Text = channel.SelectSingleNode("yweather:location", manger).Attributes["city"].Value;
             pressure_box.Text = channel.SelectSingleNode("yweather:atmosphere", manger).Attributes["pressure"].Value;
             WeatherCode = channel.SelectSingleNode("item").SelectSingleNode("yweather:condition", manger).Attributes["code"].Value;
+            cond_box.Text = Condition;
+            Condition = channel.SelectSingleNode("item").SelectSingleNode("yweather:condition", manger).Attributes["text"].Value;
         }
 
-        private void left_button_Click(object sender, RoutedEventArgs e)
-        {
-            if (map_location < 4){
+        private void left_button_Click(object sender, RoutedEventArgs e){
+            if (map_location < 2){
                 map_location += 1;
             }else{
                 map_location = 1;
@@ -266,29 +296,27 @@ namespace waterwars23._0
             pickMap();
         }
 
-        private void right_button_Click(object sender, RoutedEventArgs e)
-        {
+        private void right_button_Click(object sender, RoutedEventArgs e){
             if (map_location > 1){
                 map_location -= 1;
             }else{
-                map_location = 4;
+                map_location = 2;
             }
 
             pickMap();
         }
 
-        private void pickMap()
-        {
+        private void pickMap(){
             if (map_location == 1){
-                var uri = new Uri("http://image.weather.com/images/maps/forecast/precfcst_600x405.jpg");
-                var bitmap = new BitmapImage(uri);
-                map_pic_box.Source = bitmap;
-            }else if (map_location == 2){
                 var uri = new Uri("http://i.imwx.com/images/maps/current/curwx_600x405.jpg");
                 var bitmap = new BitmapImage(uri);
                 map_pic_box.Source = bitmap;
-            }else if (map_location == 3){
+            }else if (map_location == 2){
                 var uri = new Uri("http://image.weather.com/images/maps/forecast/map_cldcvr_tnght_4namus_enus_600x405.jpg");
+                var bitmap = new BitmapImage(uri);
+                map_pic_box.Source = bitmap;
+            }else if (map_location == 3){
+                var uri = new Uri("http://image.weather.com/images/maps/forecast/precfcst_600x405.jpg");
                 var bitmap = new BitmapImage(uri);
                 map_pic_box.Source = bitmap;
             }else if (map_location == 4){
