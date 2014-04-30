@@ -212,7 +212,7 @@ namespace waterwars23._0
 
         private void run()
         {
-            if (counter != 11)
+            if (counter != 12)
             {
                 getCityInfo();
                 setWeather();
@@ -261,6 +261,8 @@ namespace waterwars23._0
             }else if (counter == 9){
                 query = String.Format("http://weather.yahooapis.com/forecastrss?w=2364681");
             }else if (counter == 10){
+                query = String.Format("http://weather.yahooapis.com/forecastrss?w=12588041");
+            }else if (counter == 11){
                 query = String.Format("http://weather.yahooapis.com/forecastrss?w=12588041");
             }
 
