@@ -1,0 +1,13 @@
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\bin\Debug\waterwars23.0.exe.config
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\bin\Debug\waterwars23.0.exe
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\bin\Debug\waterwars23.0.pdb
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Debug\waterwars23.0.csprojResolveAssemblyReference.cache
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Debug\MainWindow.baml
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Debug\MainWindow.g.cs
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Debug\App.g.cs
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Debug\waterwars23.0_MarkupCompile.cache
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Debug\waterwars23.0.g.resources
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Debug\waterwars23._0.Properties.Resources.resources
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Debug\waterwars23.0.csproj.GenerateResource.Cache
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Debug\waterwars23.0.exe
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Debug\waterwars23.0.pdb

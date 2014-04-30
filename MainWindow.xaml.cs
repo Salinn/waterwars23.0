@@ -16,6 +16,8 @@ using System.Xml.Linq;
 using System.Xml;
 using System.IO;
 using System.Web;
+using Leap;
+using System.Windows.Threading;
 
 namespace waterwars23._0
 {
@@ -24,16 +26,151 @@ namespace waterwars23._0
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly GestureListener _leapListener;
+        private readonly Controller _leapController;
         string query;
         String WeatherCode;
         int counter;
         int map_location;
         Boolean guess;
 
+        private Object thisLock = new Object();
+
+        private void SafeWriteLine(String line)
+        {
+            lock (thisLock)
+            {
+                Console.WriteLine(line);
+            }
+        }
         public MainWindow()
         {
             InitializeComponent();
+            _leapController = new Controller();
+            _leapListener = new GestureListener();
+
+            _leapController.AddListener(_leapListener);
+
+            _leapListener.OnFrameChanged += _leapListener_OnFrameChanged;
             SetUp();
+        }
+
+        public void _leapListener_OnFrameChanged(object sender, LeapListenerEventArgs e)
+        {
+            if (!Dispatcher.CheckAccess())
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, (Action)((() => _leapListener_OnFrameChanged(sender, e))));
+            else
+            {
+                var controller = e.LmController;
+                // Get the most recent frame and report some basic information
+                Leap.Frame frame = _leapController.Frame();
+
+                /*SafeWriteLine("Frame id: " + frame.Id
+                            + ", timestamp: " + frame.Timestamp
+                            + ", hands: " + frame.Hands.Count
+                            + ", fingers: " + frame.Fingers.Count
+                            + ", tools: " + frame.Tools.Count
+                            + ", gestures: " + frame.Gestures().Count);*/
+
+                if (!frame.Hands.IsEmpty)
+                {
+                    // Get the first hand
+                    Hand hand = frame.Hands[0];
+
+                    // Check if the hand has any fingers
+                    FingerList fingers = hand.Fingers;
+                    if (!fingers.IsEmpty)
+                    {
+                        // Calculate the hand's average finger tip position
+                        Leap.Vector avgPos = Leap.Vector.Zero;
+                        foreach (Finger finger in fingers)
+                        {
+                            avgPos += finger.TipPosition;
+
+                        }
+                        avgPos /= fingers.Count;
+                        if (fingers.Rightmost.TipVelocity.z > 0)
+                        {
+                            //SafeWriteLine("Pinky down bitch!");
+                        }
+                        //SafeWriteLine("Hand has " + fingers.Count
+                        //            + " fingers, average finger tip position: " + avgPos);
+                    }
+
+                    // Get the hand's sphere radius and palm position
+                    //SafeWriteLine("Hand sphere radius: " + hand.SphereRadius.ToString("n2")
+                    //            + " mm, palm position: " + hand.PalmPosition);
+
+                    // Get the hand's normal vector and direction
+                    Leap.Vector normal = hand.PalmNormal;
+                    Leap.Vector direction = hand.Direction;
+
+                    // Calculate the hand's pitch, roll, and yaw angles
+                    //SafeWriteLine("Hand pitch: " + direction.Pitch * 180.0f / (float)Math.PI + " degrees, "
+                    //            + "roll: " + normal.Roll * 180.0f / (float)Math.PI + " degrees, "
+                    //            + "yaw: " + direction.Yaw * 180.0f / (float)Math.PI + " degrees");
+                }
+
+                // Get gestures
+                GestureList gestures = frame.Gestures();
+                for (int i = 0; i < gestures.Count; i++)
+                {
+                    SafeWriteLine("Gesture!!!");
+                    Gesture gesture = gestures[i];
+
+                    switch (gesture.Type)
+                    {
+                        case Gesture.GestureType.TYPESWIPE:
+                            SwipeGesture swipe = new SwipeGesture(gesture);
+                            /*SafeWriteLine("Swipe id: " + swipe.Id
+                                          + ", " + swipe.State
+                                           + ", position: " + swipe.Position
+                                           + ", direction: " + swipe.Direction
+                                           + ", speed: " + swipe.Speed);*/
+                            if (swipe.State == Gesture.GestureState.STATESTOP)
+                            {
+
+                                if (swipe.StartPosition.y > (swipe.Position.y + 15))
+                                {
+                                    SafeWriteLine("Select motion accepted");
+                                }
+                                if (swipe.StartPosition.x > (swipe.Position.x + 15))
+                                {
+                                    SafeWriteLine("DIS IS A SWIPE TO DA LEFT");
+                                    no_button_Click(sender, new RoutedEventArgs());
+                                }
+                                else if (swipe.StartPosition.x < (swipe.Position.x - 15))
+                                {
+                                    SafeWriteLine("DIS IS A SWIPE TO DA RIGHT");
+                                    yes_button_Click(sender, new RoutedEventArgs());
+                                }
+                            }
+                            break;
+                        case Gesture.GestureType.TYPEKEYTAP:
+                            KeyTapGesture keytap = new KeyTapGesture(gesture);
+                            SafeWriteLine("Tap id: " + keytap.Id
+                                           + ", " + keytap.State
+                                           + ", position: " + keytap.Position
+                                           + ", direction: " + keytap.Direction);
+                            break;
+                        case Gesture.GestureType.TYPESCREENTAP:
+                            ScreenTapGesture screentap = new ScreenTapGesture(gesture);
+                            SafeWriteLine("Tap id: " + screentap.Id
+                                           + ", " + screentap.State
+                                           + ", position: " + screentap.Position
+                                           + ", direction: " + screentap.Direction);
+                            break;
+                        default:
+                            SafeWriteLine("Unknown gesture type.");
+                            break;
+                    }
+                }
+
+                if (!frame.Hands.IsEmpty || !frame.Gestures().IsEmpty)
+                {
+                    SafeWriteLine("");
+                }
+            }
         }
 
         private void SetUp()

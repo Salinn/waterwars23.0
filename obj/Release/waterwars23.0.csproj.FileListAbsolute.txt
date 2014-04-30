@@ -1,0 +1,14 @@
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\bin\Release\waterwars23.0.exe.config
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\bin\Release\waterwars23.0.exe
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\bin\Release\waterwars23.0.pdb
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Release\MainWindow.baml
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Release\MainWindow.g.cs
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Release\App.g.cs
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Release\waterwars23.0_MarkupCompile.cache
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Release\waterwars23.0.g.resources
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Release\waterwars23._0.Properties.Resources.resources
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Release\waterwars23.0.csproj.GenerateResource.Cache
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Release\waterwars23.0.exe
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Release\waterwars23.0.pdb
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\obj\Release\waterwars23.0.csprojResolveAssemblyReference.cache
+E:\Projects\PrecipitationMaster\waterwars23.0.git\trunk\bin\Release\LeapCSharp.NET4.0.dll
