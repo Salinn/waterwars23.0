@@ -93,12 +93,66 @@ namespace waterwars23._0
 
                         }
                         avgPos /= fingers.Count;
-                        if (fingers.Rightmost.TipVelocity.z > 0)
+                        // Get gestures
+                        GestureList gestures = frame.Gestures();
+                        for (int i = 0; i < gestures.Count; i++)
                         {
-                            //SafeWriteLine("Pinky down bitch!");
+                            Console.WriteLine("Gesture!!!");
+                            Gesture gesture = gestures[i];
+
+                            switch (gesture.Type)
+                            {
+                                case Gesture.GestureType.TYPESWIPE:
+                                    SwipeGesture swipe = new SwipeGesture(gesture);
+                                    /*SafeWriteLine("Swipe id: " + swipe.Id
+                                                  + ", " + swipe.State
+                                                   + ", position: " + swipe.Position
+                                                   + ", direction: " + swipe.Direction
+                                                   + ", speed: " + swipe.Speed);*/
+                                    if (swipe.State == Gesture.GestureState.STATESTOP)
+                                    {
+                                        if (fingers.Count == 2)
+                                        {
+                                            //Change map when 2 fingers swipe
+                                        }
+                                        else if (fingers.Count >= 4)
+                                        {
+                                            if (swipe.StartPosition.y > (swipe.Position.y + 15))
+                                            {
+                                                SafeWriteLine("Select motion accepted");
+                                            }
+                                            if (swipe.StartPosition.x > (swipe.Position.x + 15))
+                                            {
+                                                SafeWriteLine("DIS IS A SWIPE TO DA LEFT");
+                                                no_button_Click(sender, new RoutedEventArgs());
+                                            }
+                                            else if (swipe.StartPosition.x < (swipe.Position.x - 15))
+                                            {
+                                                SafeWriteLine("DIS IS A SWIPE TO DA RIGHT");
+                                                yes_button_Click(sender, new RoutedEventArgs());
+                                            }
+                                        }
+                                    }
+                                    break;
+                                case Gesture.GestureType.TYPEKEYTAP:
+                                    KeyTapGesture keytap = new KeyTapGesture(gesture);
+                                    SafeWriteLine("Tap id: " + keytap.Id
+                                                   + ", " + keytap.State
+                                                   + ", position: " + keytap.Position
+                                                   + ", direction: " + keytap.Direction);
+                                    break;
+                                case Gesture.GestureType.TYPESCREENTAP:
+                                    ScreenTapGesture screentap = new ScreenTapGesture(gesture);
+                                    SafeWriteLine("Tap id: " + screentap.Id
+                                                   + ", " + screentap.State
+                                                   + ", position: " + screentap.Position
+                                                   + ", direction: " + screentap.Direction);
+                                    break;
+                                default:
+                                    SafeWriteLine("Unknown gesture type.");
+                                    break;
+                            }
                         }
-                        //SafeWriteLine("Hand has " + fingers.Count
-                        //            + " fingers, average finger tip position: " + avgPos);
                     }
 
                     // Get the hand's sphere radius and palm position
@@ -115,60 +169,7 @@ namespace waterwars23._0
                     //            + "yaw: " + direction.Yaw * 180.0f / (float)Math.PI + " degrees");
                 }
 
-                // Get gestures
-                GestureList gestures = frame.Gestures();
-                for (int i = 0; i < gestures.Count; i++)
-                {
-                    SafeWriteLine("Gesture!!!");
-                    Gesture gesture = gestures[i];
-
-                    switch (gesture.Type)
-                    {
-                        case Gesture.GestureType.TYPESWIPE:
-                            SwipeGesture swipe = new SwipeGesture(gesture);
-                            /*SafeWriteLine("Swipe id: " + swipe.Id
-                                          + ", " + swipe.State
-                                           + ", position: " + swipe.Position
-                                           + ", direction: " + swipe.Direction
-                                           + ", speed: " + swipe.Speed);*/
-                            if (swipe.State == Gesture.GestureState.STATESTOP)
-                            {
-
-                                if (swipe.StartPosition.y > (swipe.Position.y + 15))
-                                {
-                                    SafeWriteLine("Select motion accepted");
-                                }
-                                if (swipe.StartPosition.x > (swipe.Position.x + 15))
-                                {
-                                    SafeWriteLine("DIS IS A SWIPE TO DA LEFT");
-                                    no_button_Click(sender, new RoutedEventArgs());
-                                }
-                                else if (swipe.StartPosition.x < (swipe.Position.x - 15))
-                                {
-                                    SafeWriteLine("DIS IS A SWIPE TO DA RIGHT");
-                                    yes_button_Click(sender, new RoutedEventArgs());
-                                }
-                            }
-                            break;
-                        case Gesture.GestureType.TYPEKEYTAP:
-                            KeyTapGesture keytap = new KeyTapGesture(gesture);
-                            SafeWriteLine("Tap id: " + keytap.Id
-                                           + ", " + keytap.State
-                                           + ", position: " + keytap.Position
-                                           + ", direction: " + keytap.Direction);
-                            break;
-                        case Gesture.GestureType.TYPESCREENTAP:
-                            ScreenTapGesture screentap = new ScreenTapGesture(gesture);
-                            SafeWriteLine("Tap id: " + screentap.Id
-                                           + ", " + screentap.State
-                                           + ", position: " + screentap.Position
-                                           + ", direction: " + screentap.Direction);
-                            break;
-                        default:
-                            SafeWriteLine("Unknown gesture type.");
-                            break;
-                    }
-                }
+                
 
                 if (!frame.Hands.IsEmpty || !frame.Gestures().IsEmpty)
                 {
