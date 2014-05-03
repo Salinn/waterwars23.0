@@ -3,26 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="900" Width="1600" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        <Image x:Name="yes_no_pic_box" HorizontalAlignment="Left" Height="281" Margin="1277,330,-23,0" VerticalAlignment="Top" Width="338"/>
+        <Image x:Name="yes_no_pic_box" HorizontalAlignment="Left" Height="281" Margin="1278,396,-24,0" VerticalAlignment="Top" Width="338"/>
         <Image x:Name="map_pic_box" HorizontalAlignment="Left" Height="852" Margin="10,10,0,0" VerticalAlignment="Top" Width="1297"/>
         <Button x:Name="yes_button" Content="Yes" HorizontalAlignment="Left" Margin="190,617,0,0" VerticalAlignment="Top" Width="117" Click="yes_button_Click" Height="60" Visibility="Hidden"/>
         <Button x:Name="no_button" Content="No" HorizontalAlignment="Left" Margin="370,617,0,0" VerticalAlignment="Top" Width="119" Click="no_button_Click" Height="60" Visibility="Hidden"/>
         <Button x:Name="left_button" Content="Left" HorizontalAlignment="Left" Margin="555,617,0,0" VerticalAlignment="Top" Width="154" Click="left_button_Click" Height="73" Visibility="Hidden"/>
         <Button x:Name="right_button" Content="Right" HorizontalAlignment="Left" Margin="762,617,0,0" VerticalAlignment="Top" Width="154" Click="right_button_Click" Height="73" Visibility="Hidden"/>
         <Label x:Name="temp_lbl" Content="Tempature" HorizontalAlignment="Left" Margin="1278,60,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label x:Name="cond_lbl" Content="Condition" HorizontalAlignment="Left" Margin="1277,703,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label x:Name="cond_lbl" Content="Condition" HorizontalAlignment="Left" Margin="1278,769,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Label x:Name="humid_lbl" Content="Humidity" HorizontalAlignment="Left" Margin="1277,117,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Label x:Name="wind_lbl" Content="WindSpeed" HorizontalAlignment="Left" Margin="1277,179,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Label x:Name="city_lbl" Content="City" HorizontalAlignment="Left" Margin="1277,288,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Label x:Name="pressure_lbl" Content="Pressure" HorizontalAlignment="Left" Margin="1277,237,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label x:Name="last_city_lbl" Content="Last City" HorizontalAlignment="Left" Margin="1278,640,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label x:Name="last_city_lbl" Content="Last City" HorizontalAlignment="Left" Margin="1278,709,0,0" VerticalAlignment="Top" FontSize="20"/>
         <TextBox x:Name="temp_box" HorizontalAlignment="Left" Height="34" Margin="1396,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" FontSize="20"/>
-        <TextBox x:Name="cond_box" HorizontalAlignment="Left" Height="34" Margin="1396,706,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" FontSize="20"/>
+        <TextBox x:Name="cond_box" HorizontalAlignment="Left" Height="34" Margin="1395,769,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" FontSize="20"/>
         <TextBox x:Name="humid_box" HorizontalAlignment="Left" Height="34" Margin="1396,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" FontSize="20"/>
         <TextBox x:Name="wind_box" HorizontalAlignment="Left" Height="34" Margin="1396,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" FontSize="20"/>
         <TextBox x:Name="city_box" HorizontalAlignment="Left" Height="34" Margin="1395,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" FontSize="20"/>
         <TextBox x:Name="pressure_box" HorizontalAlignment="Left" Height="34" Margin="1396,237,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" FontSize="20"/>
-        <TextBox x:Name="last_city_box" HorizontalAlignment="Left" Height="37" Margin="1398,640,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" FontSize="20"/>
+        <TextBox x:Name="last_city_box" HorizontalAlignment="Left" Height="37" Margin="1397,709,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" FontSize="20"/>
+        <Label Content="Is It Raining?" HorizontalAlignment="Left" Margin="1278,10,0,0" VerticalAlignment="Top" Height="45" Width="292" FontSize="24"/>
+        <Label Content="Your Last Guess Was..." HorizontalAlignment="Left" Margin="1277,344,0,0" VerticalAlignment="Top" Height="47" Width="293" FontSize="24"/>
 
     </Grid>
 </Window>

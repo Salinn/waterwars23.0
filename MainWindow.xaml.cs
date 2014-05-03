@@ -122,22 +122,21 @@ namespace waterwars23._0
                                     break;
                                 case Gesture.GestureType.TYPEKEYTAP:
                                     KeyTapGesture keytap = new KeyTapGesture(gesture);
+                                    //Gotta put the button click up here!
                                     left_button_Click(sender, new RoutedEventArgs());
+                                    
                                     if (keytap.State == Gesture.GestureState.STATESTOP)
                                     {
                                         if (keytap.Direction == Leap.Vector.Down)
                                         {
-                                            
+                                            //For some reason this didnt work....
                                             
                                         }
                                     }
                                     break;
                                 case Gesture.GestureType.TYPESCREENTAP:
                                     ScreenTapGesture screentap = new ScreenTapGesture(gesture);
-                                    SafeWriteLine("Tap id: " + screentap.Id
-                                                   + ", " + screentap.State
-                                                   + ", position: " + screentap.Position
-                                                   + ", direction: " + screentap.Direction);
+                                    //Unused
                                     break;
                                 default:
                                     SafeWriteLine("Unknown gesture type.");
@@ -176,7 +175,7 @@ namespace waterwars23._0
             query = "0";
             Condition = "0";
 
-            var uri = new Uri("http://i.imwx.com/images/maps/current/curwx_600x405.jpg");
+            var uri = new Uri("http://image.weather.com/images/maps/forecast/map_cldcvr_tnght_4namus_enus_600x405.jpg");
             var bitmap = new BitmapImage(uri);
             map_pic_box.Source = bitmap;
             uri = new Uri("http://upload.wikimedia.org/wikipedia/en/4/44/Question_mark_(black_on_white).png");
@@ -283,7 +282,7 @@ namespace waterwars23._0
         }
 
         private void left_button_Click(object sender, RoutedEventArgs e){
-            if (map_location < 2){
+            if (map_location < 5){
                 map_location += 1;
             }else{
                 map_location = 1;
@@ -304,7 +303,7 @@ namespace waterwars23._0
 
         private void pickMap(){
             if (map_location == 1){
-                var uri = new Uri("http://i.imwx.com/images/maps/current/curwx_600x405.jpg");
+                var uri = new Uri("http://i.imwx.com/images/maps/current/acttemp_600x405.jpg");
                 var bitmap = new BitmapImage(uri);
                 map_pic_box.Source = bitmap;
             }else if (map_location == 2){
@@ -312,11 +311,17 @@ namespace waterwars23._0
                 var bitmap = new BitmapImage(uri);
                 map_pic_box.Source = bitmap;
             }else if (map_location == 3){
-                var uri = new Uri("http://image.weather.com/images/maps/forecast/precfcst_600x405.jpg");
+                var uri = new Uri("http://i.imwx.com/images/maps/special/24h_temp_chg_600x405.jpg");
                 var bitmap = new BitmapImage(uri);
                 map_pic_box.Source = bitmap;
             }else if (map_location == 4){
-                var uri = new Uri("http://image.weather.com/web/forecast/us_wxhi1_large_usen_600.jpg");
+                var uri = new Uri("http://i.imwx.com/images/maps/boat-n-beach/us_wind_cur_600x405.jpg");
+                var bitmap = new BitmapImage(uri);
+                map_pic_box.Source = bitmap;
+            }
+            else if (map_location == 5)
+            {
+                var uri = new Uri("http://i.imwx.com/images/maps/current/actdew_600x405.jpg");
                 var bitmap = new BitmapImage(uri);
                 map_pic_box.Source = bitmap;
             }
