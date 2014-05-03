@@ -54,7 +54,7 @@ namespace waterwars23._0
             _leapListener = new GestureListener();
             _leapController.Config.SetFloat("Gesture.Keytap.MinDownVelocity", 40.0f);
             _leapController.Config.SetFloat("Gesture.KeyTap.HistorySeconds", .3f);
-            _leapController.Config.SetFloat("Gesture.KeyTap.MinDistance", 1.0f);
+            _leapController.Config.SetFloat("Gesture.KeyTap.MinDistance", 3.0f);
             _leapController.Config.Save();
 
             _leapController.AddListener(_leapListener);
