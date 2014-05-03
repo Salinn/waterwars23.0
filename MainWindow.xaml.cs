@@ -52,8 +52,9 @@ namespace waterwars23._0
             InitializeComponent();
             _leapController = new Controller();
             _leapListener = new GestureListener();
-            _leapController.Config.SetInt32("Gesture.Keytap.MinDownVelocity", 40);
-            _leapController.Config.SetInt32("Gesture.KeyTap.MinDistance", 1);
+            _leapController.Config.SetFloat("Gesture.Keytap.MinDownVelocity", 40.0f);
+            _leapController.Config.SetFloat("Gesture.KeyTap.HistorySeconds", .3f);
+            _leapController.Config.SetFloat("Gesture.KeyTap.MinDistance", 1.0f);
             _leapController.Config.Save();
 
             _leapController.AddListener(_leapListener);
@@ -91,7 +92,7 @@ namespace waterwars23._0
                         GestureList gestures = frame.Gestures();
                         for (int i = 0; i < gestures.Count; i++)
                         {
-                            Console.WriteLine("Gesture!!!");
+                            //Console.WriteLine("Gesture!!!");
                             Gesture gesture = gestures[i];
 
                             switch (gesture.Type)
@@ -100,18 +101,19 @@ namespace waterwars23._0
                                     SwipeGesture swipe = new SwipeGesture(gesture);
                                     if (swipe.State == Gesture.GestureState.STATESTOP)
                                     {
+                                        
                                         if (swipe.StartPosition.y > (swipe.Position.y + 15))
                                         {
                                             //SafeWriteLine("Select motion accepted");
                                         }
-                                        if (swipe.StartPosition.x > (swipe.Position.x + 15))
+                                        if (swipe.StartPosition.x > (swipe.Position.x + 20))
                                         {
                                             //SafeWriteLine("DIS IS A SWIPE TO DA LEFT");
                                             //temp_box.Text = "No button click";
                                             no_button_Click(sender, new RoutedEventArgs());
                                             //left_button_Click(sender, new RoutedEventArgs());
                                         }
-                                        else if (swipe.StartPosition.x < (swipe.Position.x - 15))
+                                        else if (swipe.StartPosition.x < (swipe.Position.x - 20))
                                         {
                                             //SafeWriteLine("DIS IS A SWIPE TO DA RIGHT");
                                             //temp_box.Text = "Yes button click";
@@ -123,15 +125,10 @@ namespace waterwars23._0
                                 case Gesture.GestureType.TYPEKEYTAP:
                                     KeyTapGesture keytap = new KeyTapGesture(gesture);
                                     //Gotta put the button click up here!
-                                    left_button_Click(sender, new RoutedEventArgs());
                                     
                                     if (keytap.State == Gesture.GestureState.STATESTOP)
                                     {
-                                        if (keytap.Direction == Leap.Vector.Down)
-                                        {
-                                            //For some reason this didnt work....
-                                            
-                                        }
+                                        left_button_Click(sender, new RoutedEventArgs());
                                     }
                                     break;
                                 case Gesture.GestureType.TYPESCREENTAP:
