@@ -52,6 +52,9 @@ namespace waterwars23._0
             InitializeComponent();
             _leapController = new Controller();
             _leapListener = new GestureListener();
+            _leapController.Config.SetInt32("Gesture.Keytap.MinDownVelocity", 40);
+            _leapController.Config.SetInt32("Gesture.KeyTap.MinDistance", 1);
+            _leapController.Config.Save();
 
             _leapController.AddListener(_leapListener);
 
@@ -68,7 +71,6 @@ namespace waterwars23._0
                 var controller = e.LmController;
                 // Get the most recent frame and report some basic information
                 Leap.Frame frame = _leapController.Frame();
-
                 /*SafeWriteLine("Frame id: " + frame.Id
                             + ", timestamp: " + frame.Timestamp
                             + ", hands: " + frame.Hands.Count
@@ -85,14 +87,6 @@ namespace waterwars23._0
                     FingerList fingers = hand.Fingers;
                     if (!fingers.IsEmpty)
                     {
-                        // Calculate the hand's average finger tip position
-                        Leap.Vector avgPos = Leap.Vector.Zero;
-                        foreach (Finger finger in fingers)
-                        {
-                            avgPos += finger.TipPosition;
-
-                        }
-                        avgPos /= fingers.Count;
                         // Get gestures
                         GestureList gestures = frame.Gestures();
                         for (int i = 0; i < gestures.Count; i++)
@@ -104,42 +98,39 @@ namespace waterwars23._0
                             {
                                 case Gesture.GestureType.TYPESWIPE:
                                     SwipeGesture swipe = new SwipeGesture(gesture);
-                                    /*SafeWriteLine("Swipe id: " + swipe.Id
-                                                  + ", " + swipe.State
-                                                   + ", position: " + swipe.Position
-                                                   + ", direction: " + swipe.Direction
-                                                   + ", speed: " + swipe.Speed);*/
                                     if (swipe.State == Gesture.GestureState.STATESTOP)
                                     {
-                                        if (fingers.Count == 2)
+                                        if (swipe.StartPosition.y > (swipe.Position.y + 15))
                                         {
-                                            //Change map when 2 fingers swipe
+                                            //SafeWriteLine("Select motion accepted");
                                         }
-                                        else if (fingers.Count >= 4)
+                                        if (swipe.StartPosition.x > (swipe.Position.x + 15))
                                         {
-                                            if (swipe.StartPosition.y > (swipe.Position.y + 15))
-                                            {
-                                                SafeWriteLine("Select motion accepted");
-                                            }
-                                            if (swipe.StartPosition.x > (swipe.Position.x + 15))
-                                            {
-                                                SafeWriteLine("DIS IS A SWIPE TO DA LEFT");
-                                                no_button_Click(sender, new RoutedEventArgs());
-                                            }
-                                            else if (swipe.StartPosition.x < (swipe.Position.x - 15))
-                                            {
-                                                SafeWriteLine("DIS IS A SWIPE TO DA RIGHT");
-                                                yes_button_Click(sender, new RoutedEventArgs());
-                                            }
+                                            //SafeWriteLine("DIS IS A SWIPE TO DA LEFT");
+                                            //temp_box.Text = "No button click";
+                                            no_button_Click(sender, new RoutedEventArgs());
+                                            //left_button_Click(sender, new RoutedEventArgs());
                                         }
+                                        else if (swipe.StartPosition.x < (swipe.Position.x - 15))
+                                        {
+                                            //SafeWriteLine("DIS IS A SWIPE TO DA RIGHT");
+                                            //temp_box.Text = "Yes button click";
+                                            yes_button_Click(sender, new RoutedEventArgs());
+                                        }
+                                      
                                     }
                                     break;
                                 case Gesture.GestureType.TYPEKEYTAP:
                                     KeyTapGesture keytap = new KeyTapGesture(gesture);
-                                    SafeWriteLine("Tap id: " + keytap.Id
-                                                   + ", " + keytap.State
-                                                   + ", position: " + keytap.Position
-                                                   + ", direction: " + keytap.Direction);
+                                    left_button_Click(sender, new RoutedEventArgs());
+                                    if (keytap.State == Gesture.GestureState.STATESTOP)
+                                    {
+                                        if (keytap.Direction == Leap.Vector.Down)
+                                        {
+                                            
+                                            
+                                        }
+                                    }
                                     break;
                                 case Gesture.GestureType.TYPESCREENTAP:
                                     ScreenTapGesture screentap = new ScreenTapGesture(gesture);
